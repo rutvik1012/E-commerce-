@@ -1,3 +1,6 @@
+https://rutvik1012.github.io/E-commerce-/
+
+
 A modern and responsive E-Commerce web application built using React.js and Tailwind CSS that allows users to browse products by categories, search items, and view filtered results with a clean and user-friendly interface.
 
 
@@ -62,11 +65,17 @@ Error-safe rendering and fallback UI
 src/
 │
 ├── components/
+
 │   ├── SideBar.jsx
+
 │   ├── ID1Elec.jsx
+
 │   ├── ID2Furni.jsx
+
 │   ├── ID4Shoes.jsx
+
 │   └── ID5111.jsx
+
 │
 ├── assets/
 │   └── images...
