@@ -63,6 +63,7 @@ Error-safe rendering and fallback UI
 
 🗂️ Project Structure
 src/
+
 │
 ├── components/
 
@@ -78,7 +79,10 @@ src/
 
 │
 ├── assets/
-│   └── images...
+│   
+    └── images...
 │
+
 ├── App.jsx
+
 └── main.jsx
