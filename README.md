@@ -61,29 +61,17 @@ Loader animation during API calls
 Error-safe rendering and fallback UI
 
 
-🗂️ Project Structure
 src/
-
 │
-
 ├── components/
-|
-│ ├── SideBar.jsx
-
+│   ├── SideBar.jsx
 │   ├── ID1Elec.jsx
-
 │   ├── ID2Furni.jsx
-
 │   ├── ID4Shoes.jsx
-
 │   └── ID5111.jsx
-
 │
 ├── assets/
-│   
-    └── images...
+│   └── images...
 │
-
 ├── App.jsx
-
 └── main.jsx
