@@ -3,7 +3,7 @@ import axios from "axios";
 import BounceLoader from "react-spinners/BounceLoader";
 import SideBar from "./SideBar";
 
-const ID4Shoes = () => {
+const ID4Shoes = ({ onAddToCart }) => {
   const [data4, setData4] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -13,13 +13,11 @@ const ID4Shoes = () => {
       try {
         setLoading(true);
         const result = await axios.get(
-          "https://api.escuelajs.co/api/v1/products/4"
+          "https://api.escuelajs.co/api/v1/products"
         );
 
-        // const filterData = result.data.filter(
-        //   (item) => item.category.id === 4
-        // );
-        setData4(result.data);
+        const filterData = result.data.filter((item) => item.category.id === 4);
+        setData4(filterData);
       } catch (error) {
         console.log("error", error);
       } finally {
@@ -29,9 +27,16 @@ const ID4Shoes = () => {
     fetchProduct();
   }, []);
 
-  const filteredData = data4.filter((item) =>
-    item.title.toLowerCase().includes(search.toLowerCase())
-  );
+  const filterdData4 = Array.isArray(data4)
+    ? data4.filter((item) =>
+        item.title?.toLowerCase().includes(search.toLowerCase())
+      )
+    : [];
+
+  const handleCart = (item) => {
+    onAddToCart(item);
+    //  navigate("/Cart");
+  };
 
   return (
     <div className="flex flex-col md:flex-row bg-gray-100 min-h-screen">
@@ -55,7 +60,7 @@ const ID4Shoes = () => {
                 <input
                   type="text"
                   className="text-slate-900 text-lg w-full outline-none"
-                  placeholder="Search Here"
+                  placeholder="Search Shoes"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
@@ -63,8 +68,8 @@ const ID4Shoes = () => {
             </div>
 
             {/* Products / empty state */}
-            {filteredData.length > 0 ? (
-              filteredData.map((item) => (
+            {filterdData4.length > 0 ? (
+              filterdData4.map((item) => (
                 <div
                   key={item.id}
                   className="flex flex-col md:flex-row justify-between p-3 border-b last:border-b-0"
@@ -90,7 +95,7 @@ const ID4Shoes = () => {
 
                   {/* Price */}
                   <div className="md:w-[20%] text-center md:text-right mt-3 md:mt-0">
-                    <p className="text-lg font-bold border-b-2 inline-block border-gray-400 text-blue-700">
+                    <p className="text-xl pe-1 font-bold border-b-2 inline-block border-gray-400 text-blue-700">
                       ${item.price}
                     </p>
                     <div className="flex md:block justify-center gap-2 md:gap-0">
@@ -101,6 +106,12 @@ const ID4Shoes = () => {
                     <p className="italic text-sm md:text-base underline">
                       20% Discount
                     </p>
+                    <button
+                      onClick={() => handleCart(item)}
+                      className="cursor-pointer font-semibold text-gray-900 mt-5 px-3 py-2 bg-green-500 rounded text-center"
+                    >
+                      ADD TO CART
+                    </button>
                   </div>
                 </div>
               ))

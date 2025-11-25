@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BounceLoader from "react-spinners/BounceLoader";
 import SideBar from "./SideBar";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useFormState } from "react-dom";
 
-const ID3Furni = () => {
+const ID3Furni = ({ onAddToCart }) => {
   const [data3, setData3] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -16,9 +19,7 @@ const ID3Furni = () => {
           "https://api.escuelajs.co/api/v1/products"
         );
 
-        const filterData = result.data.filter(
-          (item) => item.category.id === 3
-        );
+        const filterData = result.data.filter((item) => item.category.id === 3);
         setData3(filterData);
       } catch (error) {
         console.log("error", error);
@@ -32,6 +33,11 @@ const ID3Furni = () => {
   const filterData = data3.filter((item) =>
     item.title.toLowerCase().includes(search.toLowerCase())
   );
+
+  const handleCart = (item) => {
+    onAddToCart(item);
+    //  navigate("/Cart");
+  };
 
   return (
     <div className="flex flex-col md:flex-row bg-gray-100 min-h-screen">
@@ -50,12 +56,14 @@ const ID3Furni = () => {
           <div className="bg-white rounded-xl shadow p-4">
             {/* Search */}
             <div className="mb-4 p-3 sticky top-0 bg-gray-100 rounded z-10">
-              <h1 className="text-2xl font-bold mb-3">Search Products</h1>
+              <div className="">
+                <h1 className="text-2xl font-bold mb-3">Search Products</h1>
+              </div>
               <div className="bg-white rounded-xl shadow p-3">
                 <input
                   type="text"
                   className="text-slate-900 text-lg w-full outline-none"
-                  placeholder="Search Here"
+                  placeholder="Search Furniture"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
@@ -82,11 +90,12 @@ const ID3Furni = () => {
                       {item.title}
                     </p>
                     <p className="text-sm md:text-base text-gray-700">
-                      {item.description}</p>
+                      {item.description}
+                    </p>
                   </div>
 
                   <div className="md:w-[20%] text-center md:text-right mt-3 md:mt-0">
-                    <p className="text-lg font-bold border-b-2 inline-block border-gray-400 text-blue-700">
+                    <p className="text-xl font-bold border-b-2 pe-1 inline-block border-gray-400 text-blue-700">
                       ${item.price}
                     </p>
                     <div className="flex md:block justify-center gap-2 md:gap-0">
@@ -97,6 +106,12 @@ const ID3Furni = () => {
                     <p className="italic text-sm md:text-base underline">
                       20% Discount
                     </p>
+                    <button
+                      onClick={() => handleCart(item)}
+                      className="cursor-pointer font-semibold text-gray-900 mt-5 px-3 py-2 bg-green-500 rounded text-center"
+                    >
+                      ADD TO CART
+                    </button>
                   </div>
                 </div>
               ))

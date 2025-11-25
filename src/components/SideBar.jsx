@@ -3,11 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const SideBar = () => {
-  
-
-
-
-
   return (
     <div className="bg-white rounded-xl shadow p-4">
       {/* Header */}
@@ -18,12 +13,19 @@ const SideBar = () => {
           </h1>
         </Link>
 
-      
-
         <p className="mt-3 text-gray-600 max-w-xs">
           Browse our premium collection of electronics, furniture, shoes and
           more wit <u>20% Discount</u> .
         </p>
+      </div>
+
+      <div className="mb-5 text-center">
+        <NavLink
+          to="/Cart"
+          className="font-medium rounded  px-5 me-3 text-center py-2 bg-amber-300 "
+        >
+          Cart
+        </NavLink>
       </div>
 
       <h2 className="text-xl font-semibold mb-4">Categories</h2>
@@ -73,7 +75,7 @@ const SideBar = () => {
         </li>
         <li>
           <NavLink
-            to="/111"
+            to="/Miscell"
             className={({ isActive }) =>
               `block px-4 py-2 rounded font-semibold text-lg transition ${
                 isActive
@@ -82,7 +84,7 @@ const SideBar = () => {
               }`
             }
           >
-            111
+            Miscellaneous
           </NavLink>
         </li>
       </ul>

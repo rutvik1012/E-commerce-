@@ -3,7 +3,7 @@ import axios from "axios";
 import BounceLoader from "react-spinners/BounceLoader";
 import SideBar from "./SideBar";
 
-const ID5111 = () => {
+const ID5Miscell = ({ onAddToCart }) => {
   const [data5, setData5] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -16,9 +16,7 @@ const ID5111 = () => {
           "https://api.escuelajs.co/api/v1/products"
         );
 
-        const filterData = result.data.filter(
-          (item) => item.category.id === 5
-        );
+        const filterData = result.data.filter((item) => item.category.id === 5);
         setData5(filterData);
       } catch (error) {
         console.log("error", error);
@@ -29,13 +27,16 @@ const ID5111 = () => {
     fetchProduct();
   }, []);
 
- const filterdData = Array.isArray(data5)
-  ? data5.filter((item) =>
-      item.title?.toLowerCase().includes(search.toLowerCase())
-    )
-  : [];
+  const filterdData = Array.isArray(data5)
+    ? data5.filter((item) =>
+        item.title?.toLowerCase().includes(search.toLowerCase())
+      )
+    : [];
 
-
+  const handleCart = (item) => {
+    onAddToCart(item);
+    //  navigate("/Cart");
+  };
   return (
     <div className="flex flex-col md:flex-row bg-gray-100 min-h-screen">
       {/* Sidebar */}
@@ -58,7 +59,7 @@ const ID5111 = () => {
                 <input
                   type="text"
                   className="text-slate-900 text-lg w-full outline-none"
-                  placeholder="Search Here"
+                  placeholder="Search Miscellaneous"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
@@ -85,11 +86,12 @@ const ID5111 = () => {
                       {item.title}
                     </p>
                     <p className="text-sm md:text-base text-gray-700">
-                      {item.description}</p>
+                      {item.description}
+                    </p>
                   </div>
 
                   <div className="md:w-[20%] text-center md:text-right mt-3 md:mt-0">
-                    <p className="text-lg font-bold border-b-2 inline-block border-gray-400 text-blue-700">
+                    <p className="text-xl pe-1 font-bold border-b-2 inline-block border-gray-400 text-blue-700">
                       ${item.price}
                     </p>
                     <div className="flex md:block justify-center gap-2 md:gap-0">
@@ -100,6 +102,12 @@ const ID5111 = () => {
                     <p className="italic text-sm md:text-base underline">
                       20% Discount
                     </p>
+                    <button
+                      onClick={() => handleCart(item)}
+                      className="cursor-pointer font-semibold text-gray-900 mt-5 px-3 py-2 bg-green-500 rounded text-center"
+                    >
+                      ADD TO CART
+                    </button>
                   </div>
                 </div>
               ))
@@ -116,4 +124,4 @@ const ID5111 = () => {
   );
 };
 
-export default ID5111;
+export default ID5Miscell;

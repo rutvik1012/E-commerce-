@@ -8,6 +8,7 @@ const main = () => {
   return (
     <>
       {/* Hero / Welcome */}
+
       <div className="flex flex-col items-center justify-center text-center py-10 mb-6 px-4">
         <h1 className="text-3xl md:text-4xl font-extrabold text-slate-800">
           Welcome to E-Comm Store
@@ -62,8 +63,8 @@ const main = () => {
           </div>
         </Link>
 
-        {/* 111 */}
-        <Link to="/111">
+        {/* Miscellaneous */}
+        <Link to="/Miscell">
           <div className="h-80 border-2 border-gray-800 bg-emerald-50 rounded-xl shadow-md overflow-hidden hover:-translate-y-1 transition">
             <img
               src={Id2Image}
@@ -71,7 +72,9 @@ const main = () => {
               className="w-full h-56 border-b-2 border-gray-800 object-cover"
             />
             <div className="p-3">
-              <h3 className="text-lg font-semibold text-center">111</h3>
+              <h3 className="text-lg font-semibold text-center">
+                Miscellaneous
+              </h3>
             </div>
           </div>
         </Link>

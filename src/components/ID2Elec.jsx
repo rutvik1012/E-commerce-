@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import SideBar from "./SideBar";
 import BounceLoader from "react-spinners/BounceLoader";
 
-const ID2Elec = () => {
+const ID2Elec = ({ onAddToCart }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -16,9 +16,7 @@ const ID2Elec = () => {
           "https://api.escuelajs.co/api/v1/products"
         );
 
-        const filterData = result.data.filter(
-          (item) => item.category.id === 2
-        );
+        const filterData = result.data.filter((item) => item.category.id === 2);
         setData(filterData);
       } catch (error) {
         console.log("error", error);
@@ -32,6 +30,11 @@ const ID2Elec = () => {
   const filterData = data.filter((item) =>
     item.title.toLowerCase().includes(search.toLowerCase())
   );
+
+  const handleCart = (item) => {
+    onAddToCart(item);
+    //  navigate("/Cart");
+  };
 
   return (
     <div className="flex flex-col md:flex-row bg-gray-100 min-h-screen">
@@ -55,7 +58,7 @@ const ID2Elec = () => {
                 <input
                   type="text"
                   className="text-slate-900 text-lg w-full outline-none"
-                  placeholder="Search here..."
+                  placeholder="Search Electronics"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
@@ -63,43 +66,56 @@ const ID2Elec = () => {
             </div>
 
             {/* Product List */}
-            {filterData.map((item) => (
-              <div
-                key={item.id}
-                className="flex flex-col md:flex-row justify-between p-3 border-b last:border-b-0"
-              >
-                <div className="md:w-[30%] mb-3 md:mb-0">
-                  <img
-                    src={item.images[0]}
-                    alt={item.title}
-                    className="w-full max-h-76 md:h-70 object-fill rounded"
-                  />
-                </div>
-
-                <div className="md:w-[50%] px-0 md:px-6">
-                  <p className="text-lg md:text-xl font-semibold hover:text-blue-600">
-                    {item.title}
-                  </p>
-                  <p className="text-sm md:text-base mt-1 text-gray-700">
-                    {item.description}
-                  </p>
-                </div>
-
-                <div className="md:w-[20%] text-center md:text-right mt-3 md:mt-0">
-                  <p className="text-lg font-bold border-b-2 inline-block border-gray-400 text-blue-700">
-                    ${item.price}
-                  </p>
-                  <div className="flex md:block justify-center gap-2 md:gap-0">
-                    <del className="italic p-2 font-semibold text-green-600">
-                      ${(item.price + item.price * 0.2).toFixed(2)}
-                    </del>
+            {filterData.length > 0 ? (
+              filterData.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex flex-col md:flex-row justify-between p-3 border-b last:border-b-0"
+                >
+                  <div className="md:w-[30%] mb-3 md:mb-0">
+                    <img
+                      src={item.images[0]}
+                      alt={item.title}
+                      className="w-full max-h-76 md:h-70 object-fill rounded"
+                    />
                   </div>
-                  <p className="italic text-sm md:text-base underline">
-                    20% Discount
-                  </p>
+
+                  <div className="md:w-[50%] px-0 md:px-6">
+                    <p className="text-lg md:text-xl font-semibold hover:text-blue-600">
+                      {item.title}
+                    </p>
+                    <p className="text-sm md:text-base mt-1 text-gray-700">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  <div className="md:w-[20%] text-center md:text-right mt-3 md:mt-0">
+                    <p className="text-xl font-bold border-b-2 pe-1 inline-block border-gray-400 text-blue-700">
+                      ${item.price}
+                    </p>
+                    <div className="flex md:block justify-center gap-2 md:gap-0">
+                      <del className="italic p-2 font-semibold text-green-600">
+                        ${(item.price + item.price * 0.2).toFixed(2)}
+                      </del>
+                    </div>
+                    <p className="italic text-sm md:text-base underline">
+                      20% Discount
+                    </p>
+                    <button
+                      onClick={() => handleCart(item)}
+                      className="cursor-pointer font-semibold text-gray-900 mt-5 px-3 py-2 bg-green-500 rounded text-center"
+                    >
+                      ADD TO CART
+                    </button>
+                  </div>
                 </div>
+              ))
+            ) : (
+              <div className="flex flex-col items-center py-12 text-gray-500">
+                <span className="text-4xl">🔍</span>
+                <p className="text-lg font-medium">No results found</p>
               </div>
-            ))}
+            )}
           </div>
         )}
       </div>
