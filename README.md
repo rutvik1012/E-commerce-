@@ -63,24 +63,16 @@ Error-safe rendering and fallback UI
 
 src/
 │
-|
 ├── components/
-
-│   ├── SideBar.jsx
-
-│   ├── ID1Elec.jsx
-
-│   ├── ID2Furni.jsx
-  
-│   ├── ID4Shoes.jsx
-
-│   └── ID5111.jsx
-
-|
+│   ├── SideBar.jsx        # Sidebar navigation with categories
+│   ├── ID1Elec.jsx        # Electronics products page
+│   ├── ID2Furni.jsx       # Furniture products page
+│   ├── ID4Shoes.jsx       # Shoes products page
+│   └── ID5111.jsx         # Additional category page
+│
 ├── assets/
+│   └── images/            # Static images used in UI
+│
+├── App.jsx                # Main app component with routes
+└── main.jsx               # Entry point of React application
 
-│   └── images...
-
-├── App.jsx
-
-└── main.jsx
