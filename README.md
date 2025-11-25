@@ -63,6 +63,7 @@ Error-safe rendering and fallback UI
 
 src/
 │
+
 ├── components/
 │   ├── SideBar.jsx
 │   ├── ID1Elec.jsx
@@ -70,8 +71,10 @@ src/
 │   ├── ID4Shoes.jsx
 │   └── ID5111.jsx
 │
+
 ├── assets/
 │   └── images...
 │
+
 ├── App.jsx
 └── main.jsx
