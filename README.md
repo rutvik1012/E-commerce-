@@ -65,9 +65,10 @@ Error-safe rendering and fallback UI
 src/
 
 │
-├── components/
 
-│   ├── SideBar.jsx
+├── components/
+|
+│ ├── SideBar.jsx
 
 │   ├── ID1Elec.jsx
 
