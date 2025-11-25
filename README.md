@@ -65,22 +65,22 @@ src/
 │
 |
 ├── components/
-|   |
+
 │   ├── SideBar.jsx
-|   |
+
 │   ├── ID1Elec.jsx
-|   |
+
 │   ├── ID2Furni.jsx
-|   |  
+  
 │   ├── ID4Shoes.jsx
-|   |
+
 │   └── ID5111.jsx
-│
+
 |
 ├── assets/
-|   |
+
 │   └── images...
-│
+
 ├── App.jsx
-|
+
 └── main.jsx
