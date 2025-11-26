@@ -6,6 +6,8 @@ import ID3Furni from "./components/ID3Furni";
 import ID4Shoes from "./components/ID4Shoes";
 import ID5Miscell from "./components/ID5Miscell";
 import Cart from "./components/Cart";
+import { ToastContainer, Bounce } from "react-toastify";
+
 const App = () => {
   const [cart, setCart] = useState([]);
 
@@ -27,6 +29,20 @@ const App = () => {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
+      {/* <ToastContainer position="top-right" autoClose={3000} /> */}
       <BrowserRouter basename="/E-commerce-">
         <Routes>
           <Route path="/" element={<Main />} />

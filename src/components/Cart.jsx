@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SideBar from "./SideBar";
+import { toast } from "react-toastify";
 
 const Cart = ({ cart }) => {
   const [items, setItems] = useState([]);
@@ -36,6 +37,7 @@ const Cart = ({ cart }) => {
   // ✅ REMOVE FUNCTION
   const removeItem = (id) => {
     setItems(items.filter((item) => item.id !== id));
+    toast.warn('Item Remove')
   };
 
   const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);

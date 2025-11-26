@@ -3,7 +3,7 @@ import axios from "axios";
 import BounceLoader from "react-spinners/BounceLoader";
 import SideBar from "./SideBar";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useFormState } from "react-dom";
+import {  toast } from "react-toastify";
 
 const ID3Furni = ({ onAddToCart }) => {
   const [data3, setData3] = useState([]);
@@ -37,6 +37,7 @@ const ID3Furni = ({ onAddToCart }) => {
   const handleCart = (item) => {
     onAddToCart(item);
     //  navigate("/Cart");
+    toast.success("Item added to cart ✅");
   };
 
   return (

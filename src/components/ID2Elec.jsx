@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import SideBar from "./SideBar";
 import BounceLoader from "react-spinners/BounceLoader";
+import {  toast } from "react-toastify";
 
 const ID2Elec = ({ onAddToCart }) => {
   const [data, setData] = useState([]);
@@ -33,6 +34,7 @@ const ID2Elec = ({ onAddToCart }) => {
 
   const handleCart = (item) => {
     onAddToCart(item);
+    toast.success("Item added to cart ✅");
     //  navigate("/Cart");
   };
 
